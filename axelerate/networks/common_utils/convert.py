@@ -49,7 +49,7 @@ class Converter(object):
         output_name = os.path.basename(model_path).split(".")[0]+".kmodel"
         output_path = os.path.join(os.path.dirname(model_path),output_name)
         print(output_path)
-        result = subprocess.run([k210_converter_path, "compile",model_path,output_path,"-i","tflite","--dataset",dataset_path])
+        result = subprocess.run([k210_converter_path,"-i","tflite","-o","k210model","--dataset",dataset_path,model_path,output_path])
         print(result.returncode)
 
     def convert_tflite(self, model_path, model_layers, k210=False):
